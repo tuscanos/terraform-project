@@ -8,6 +8,6 @@ resource "aws_instance" "s_instance" {
   tags {
     Name = "hello-instance"
   }
-  key_name = "ll_aws_secure"
+  key_name = "aws_key"
   subnet_id = "subnet-5d49e676"
 }
