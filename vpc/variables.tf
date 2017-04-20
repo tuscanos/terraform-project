@@ -32,6 +32,9 @@ variable "private_subnet_avail_zone" {
   default = "us-east-1b"
 }
 
+variable "nat_instance_type" {
+  default = "t2.micro"
+}
 
 variable "public_key_path" {
   description = <<DESCRIPTION
