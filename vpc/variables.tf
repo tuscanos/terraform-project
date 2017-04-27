@@ -1,11 +1,13 @@
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
-variable "aws_key_path" {}
-variable "aws_key_name" {}
+#variable "aws_access_key" {}
+#variable "aws_secret_key" {}
+
+variable "aws_key_name" {
+  default = "tf-aws-secure"
+}
 
 variable "aws_region" {
     description = "EC2 Region for the VPC"
-    default = "us-east-1"
+    default = "us-west-2"
 }
 
 
@@ -20,7 +22,7 @@ variable "public_subnet_cidr" {
 }
 
 variable "public_subnet_avail_zone" {
-  default = "us-east-1a"
+  default = "us-west-2a"
 }
 
 variable "private_subnet_cidr" {
@@ -29,33 +31,31 @@ variable "private_subnet_cidr" {
 }
 
 variable "private_subnet_avail_zone" {
-  default = "us-east-1b"
+  default = "us-west-2b"
 }
 
 variable "nat_instance_type" {
   default = "t2.micro"
 }
 
-variable "public_key_path" {
-  description = <<DESCRIPTION
-Path to the SSH public key to be used for authentication.
-Ensure this keypair is added to your local SSH agent so provisioners can
-connect.
-Example: ~/.ssh/terraform.pub
-DESCRIPTION
-}
+#variable "public_key_path" {
+#  description = <<DESCRIPTION
+#Path to the SSH public key to be used for authentication.
+#Ensure this keypair is added to your local SSH agent so provisioners can
+#connect.
+#Example: ~/.ssh/terraform.pub
+#DESCRIPTION
+#}
 
-variable "key_name" {
-  description = "Desired name of AWS key pair"
-}
+#variable "key_name" {
+#  description = "Desired name of AWS key pair"
+#}
 
 
 # Ubuntu Precise 12.04 LTS (x64)
 variable "aws_amis" {
-  default = {
-    eu-west-1 = "ami-b1cf19c6"
-    us-east-1 = "ami-de7ab6b6"
-    us-west-1 = "ami-3f75767a"
-    us-west-2 = "ami-21f78e11"
-  }
+  default = "ami-4836a428"
+#    us-wast-1 = "ami-7a85a01a"
+#    us-west-2 = "ami-4836a428"
+
 }

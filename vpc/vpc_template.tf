@@ -1,8 +1,9 @@
 # Specify the provider and access details
 provider "aws" {
-    access_key = "${var.aws_access_key}"
-    secret_key = "${var.aws_secret_key}"
-    region = "${var.aws_region}"
+    #access_key = "${var.aws_access_key}"
+    #secret_key = "${var.aws_secret_key}"
+    #region = "${var.aws_region}"
+    region                  = "us-west-2"
 }
 
 # Create a VPC to launch our instances into
@@ -60,7 +61,7 @@ resource "aws_route_table" "private_route_table" {
     vpc_id = "${aws_vpc.default.id}"
     route {
         cidr_block = "0.0.0.0/0"
-        instance_id = "${aws_instance.nat.id}"
+        instance_id = "${aws_instance.nat-instance.id}"
     }
     tags {
         Name = "Private-Subnet-route-table"
@@ -136,7 +137,7 @@ resource "aws_security_group" "nat_sg" {
 }
 
 resource "aws_instance" "nat-instance" {
-    ami = "ami-30913f47" # this is a special ami preconfigured to do NAT
+    ami = "${var.aws_amis}" # this is a special ami preconfigured to do NAT
     availability_zone = "${var.public_subnet_avail_zone}"
     instance_type = "${var.nat_instance_type}"
     key_name = "${var.aws_key_name}"
